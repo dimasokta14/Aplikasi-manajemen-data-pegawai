@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
@@ -26,6 +27,7 @@ class RouteServiceProvider extends ServiceProvider
         //
 
         parent::boot();
+        Route::model('employee', \App\Employee::class);
     }
 
     /**
@@ -33,8 +35,9 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function map()
+    public function map(Router $router)
     {
+
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();

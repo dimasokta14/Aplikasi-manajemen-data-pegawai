@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Employee;
 use Illuminate\Http\Request;
+use App\Http\Requests\EmployeeRequest;
 
 class EmployeeController extends Controller
 {
@@ -15,7 +16,7 @@ class EmployeeController extends Controller
     public function index()
     {
         $employees = Employee::with('company', 'job')->paginate(5);
-        return view('pages.employeelists', compact('employees'));
+        return view('pages.employee.employeelists', compact('employees'));
     }
 
     /**
@@ -25,7 +26,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.employee.create');
     }
 
     /**
@@ -34,9 +35,12 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EmployeeRequest $request)
     {
-        //
+        $input = $request->all();
+        $employee = Employee::create($input);
+
+        return back()->withStatus(__('Data berhasil di tambahkan.'));
     }
 
     /**
@@ -56,9 +60,10 @@ class EmployeeController extends Controller
      * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employee $employee)
+    public function edit($id)
     {
-        //
+        $employees = Employee::find($id);
+        return view('pages.employee.edit', compact('employees'));
     }
 
     /**
@@ -68,9 +73,12 @@ class EmployeeController extends Controller
      * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employee $employee)
+    public function update(EmployeeRequest $request)
     {
-        //
+        $employee = Employee::findOrFail($request->id);
+        $employee->update($request->all());
+
+        return back()->withStatus(__('Data berhasil di update.'));
     }
 
     /**
@@ -81,6 +89,7 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        //
+        $employee->delete();
+        return back()->withStatus(__('Data berhasil di hapus.'));
     }
 }

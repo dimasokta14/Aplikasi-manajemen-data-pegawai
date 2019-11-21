@@ -44,9 +44,9 @@ class JobReferenceController extends Controller
      * @param  \App\JobReference  $jobReference
      * @return \Illuminate\Http\Response
      */
-    public function show(JobReference $jobReference)
+    public function show()
     {
-        //
+
     }
 
     /**
