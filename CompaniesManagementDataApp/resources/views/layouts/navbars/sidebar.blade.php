@@ -5,8 +5,8 @@
       Tip 2: you can also add an image using data-image tag
   -->
   <div class="logo">
-    <a href="https://creative-tim.com/" class="simple-text logo-normal">
-      {{ __('Creative Tim') }}
+    <a href="#" class="simple-text logo-normal">
+      {{ __('Creative People') }}
     </a>
   </div>
   <div class="sidebar-wrapper">
@@ -19,8 +19,8 @@
       </li>
       <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
-          <i><img style="width:25px" src="{{ asset('material') }}/img/laravel.svg"></i>
-          <p>{{ __('Laravel Examples') }}
+          <i class="material-icons">supervised_user_circle</i>
+          <p>{{ __('User List') }}
             <b class="caret"></b>
           </p>
         </a>
@@ -43,13 +43,13 @@
       </li>
       <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('table') }}">
-          <i class="material-icons">content_paste</i>
+          <i class="material-icons" style="twotone">home_work</i>
             <p>{{ __('Company List') }}</p>
         </a>
       </li>
       <li class="nav-item{{ $activePage == 'employee' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('employee') }}">
-          <i class="material-icons">content_paste</i>
+          <i class="material-icons">face</i>
             <p>{{ __('Employee List') }}</p>
         </a>
       </li>

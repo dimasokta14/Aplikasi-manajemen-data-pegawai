@@ -22,7 +22,15 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('company-list', 'CompanyController@index')->name('table');
+
+	Route::group(['prefix' => 'company-list'], function () {
+		Route::get('', 'CompanyController@index')->name('table');
+		Route::get('/edit/{company}', ['as' => 'company.edit', 'uses' => 'CompanyController@edit']);
+		Route::get('/create', ['as' => 'company.create', 'uses' => 'CompanyController@create']);
+		Route::post('/store', ['as' => 'company.store', 'uses' => 'CompanyController@store']);
+		Route::delete('/delete/{employee}', ['as' => 'company.destroy', 'uses' => 'CompanyController@destroy']);
+		Route::put('/update', ['as' => 'company.update', 'uses' => 'CompanyController@update']);
+	});
 
 	Route::group(['prefix' => 'employee-list'], function () {
 		Route::get('', 'EmployeeController@index')->name('employee');

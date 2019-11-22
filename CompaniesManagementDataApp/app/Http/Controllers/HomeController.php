@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Company;
+use App\Employee;
 
 class HomeController extends Controller
 {
@@ -21,6 +23,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $totalC = Company::count();
+        $totalE = Employee::count();
+        $data = [
+            't_employee' => $totalE,
+            't_company' => $totalC,
+        ];
+        $employees = Employee::with('company', 'job')->take(5)->get();
+        return view('dashboard', compact('data', 'employees'));
     }
 }
