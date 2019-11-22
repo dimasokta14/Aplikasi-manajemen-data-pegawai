@@ -28,17 +28,17 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/edit/{company}', ['as' => 'company.edit', 'uses' => 'CompanyController@edit']);
 		Route::get('/create', ['as' => 'company.create', 'uses' => 'CompanyController@create']);
 		Route::post('/store', ['as' => 'company.store', 'uses' => 'CompanyController@store']);
-		Route::delete('/delete/{employee}', ['as' => 'company.destroy', 'uses' => 'CompanyController@destroy']);
-		Route::put('/update', ['as' => 'company.update', 'uses' => 'CompanyController@update']);
+		Route::delete('/delete/{company}', ['as' => 'company.destroy', 'uses' => 'CompanyController@destroy']);
+		Route::put('/update/{company}', ['as' => 'company.update', 'uses' => 'CompanyController@update']);
 	});
 
 	Route::group(['prefix' => 'employee-list'], function () {
 		Route::get('', 'EmployeeController@index')->name('employee');
-		Route::get('/edit/{id}', ['as' => 'employee.edit', 'uses' => 'EmployeeController@edit']);
+		Route::get('/edit/{employee}', ['as' => 'employee.edit', 'uses' => 'EmployeeController@edit']);
 		Route::get('/create', ['as' => 'employee.create', 'uses' => 'EmployeeController@create']);
 		Route::post('/store', ['as' => 'employee.store', 'uses' => 'EmployeeController@store']);
 		Route::delete('/delete/{employee}', ['as' => 'employee.destroy', 'uses' => 'EmployeeController@destroy']);
-		Route::put('/update', ['as' => 'employee.update', 'uses' => 'EmployeeController@update']);
+		Route::put('/update/{employee}', ['as' => 'employee.update', 'uses' => 'EmployeeController@update']);
 	});
 
 	Route::get('notifications', function () {

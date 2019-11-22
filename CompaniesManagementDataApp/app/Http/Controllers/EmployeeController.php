@@ -60,10 +60,9 @@ class EmployeeController extends Controller
      * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Employee $employee)
     {
-        $employees = Employee::find($id);
-        return view('pages.employee.edit', compact('employees'));
+        return view('pages.employee.edit', compact('employee'));
     }
 
     /**
@@ -73,10 +72,12 @@ class EmployeeController extends Controller
      * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(EmployeeRequest $request)
+    public function update(EmployeeRequest $request, Employee $employee)
     {
-        $employee = Employee::findOrFail($request->id);
-        $employee->update($request->all());
+        
+       $input = $request->all();
+
+       $employee->update($input);
 
         return back()->withStatus(__('Data berhasil di update.'));
     }

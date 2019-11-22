@@ -6,6 +6,7 @@ use App\Company;
 use App\Employee;
 use Illuminate\Http\Request;
 use App\Http\Requests\CompanyRequest;
+use Illuminate\Support\Facades\Storage;
 
 class CompanyController extends Controller
 {
@@ -38,8 +39,24 @@ class CompanyController extends Controller
      */
     public function store(CompanyRequest $request)
     {
+        
         $input = $request->all();
-        $company = Employee::create($input);
+
+        if ($request->hasFile('logo')){
+            // upload logo
+            $logo = $request->file('logo');
+            $nama = $request->nama;
+            $ext = $logo->getClientOriginalExtension();
+            if ($request->file('logo')->isValid()) {
+                $nameL = 'logo-'."$nama".".$ext";
+                $uploadPath = storage_path('app\company');
+                $request->file('logo')->move($uploadPath, $nameL);
+                $input['logo'] = $nameL;
+            }
+            
+        }
+
+        $company = Company::create($input);
 
         return back()->withStatus(__('Data berhasil di tambahkan.'));
     }
@@ -75,7 +92,28 @@ class CompanyController extends Controller
      */
     public function update(CompanyRequest $request, Company $company)
     {
-        $employee->update($request->all());
+        $input = $request->all();
+        if ($request->hasFile('logo')){
+            // hapus logo lama di directory (storage/app/company)
+            $exist = Storage::disk('logo')->exists($company->logo);
+            
+            if (isset($company->logo) && $exist) {
+                $delete = Storage::disk('logo')->delete($company->logo);
+            }
+            // upload logo baru
+            $logo = $request->file('logo');
+            $nama = $request->nama;
+            $ext = $logo->getClientOriginalExtension();
+            if ($request->file('logo')->isValid()) {
+                $nameL = 'logo-'."$nama".".$ext";
+                $uploadPath = storage_path('app\company');
+                $request->file('logo')->move($uploadPath, $nameL);
+                $input['logo'] = $nameL;
+            }
+            
+        }
+
+        $company->update($input);
 
         return back()->withStatus(__('Data berhasil di update.'));
     }

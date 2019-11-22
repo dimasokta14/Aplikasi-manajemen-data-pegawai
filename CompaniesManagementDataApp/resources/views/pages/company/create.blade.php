@@ -5,10 +5,8 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <form runat="server" method="post" action="{{ route('company.store') }}" autocomplete="off" class="form-horizontal">
-            @csrf
-            @method('post')
-
+          <form method="post" action="{{ route('company.store') }}" autocomplete="off" class="form-horizontal" enctype= "multipart/form-data">
+          @csrf
             <div class="card ">
               <div class="card-header card-header-primary">
                 <h4 class="card-title">{{ __('Add New Company Data') }}</h4>
@@ -31,8 +29,7 @@
                   <label class="col-sm-2 col-form-label">{{ __('Nama') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('nama') ? ' has-danger' : '' }}">
-                      <input class="d-none" name="id" value="">
-                      <input class="form-control{{ $errors->has('nama') ? ' is-invalid' : '' }}" name="nama" id="input-nama" type="text" placeholder="{{ __('Nama') }}" required="true" aria-required="true"/>
+                      <input class="form-control{{ $errors->has('nama') ? ' is-invalid' : '' }}" name="nama" id="input-nama" type="text" placeholder="{{ __('Nama Perusahaan') }}" aria-required="true"/>
                       @if ($errors->has('nama'))
                         <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('nama') }}</span>
                       @endif
@@ -43,7 +40,7 @@
                   <label class="col-sm-2 col-form-label">{{ __('Email') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="input-email" type="email" placeholder="{{ __('Email') }}"/>
+                      <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="input-email" type="email" placeholder="{{ __('Email Perusahaan') }}"/>
                       @if ($errors->has('email'))
                         <span id="email-error" class="error text-danger" for="input-email">{{ $errors->first('email') }}</span>
                       @endif
@@ -54,7 +51,7 @@
                   <label class="col-sm-2 col-form-label">{{ __('Alamat') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('alamat') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('alamat') ? ' is-invalid' : '' }}" name="alamat" id="input-alamat" type="alamat" placeholder="{{ __('Alamat') }}" />
+                      <input class="form-control{{ $errors->has('alamat') ? ' is-invalid' : '' }}" name="alamat" id="input-alamat" type="text" placeholder="{{ __('Alamat Perusahaan') }}" />
                       @if ($errors->has('alamat'))
                         <span id="alamat-error" class="error text-danger" for="input-alamat">{{ $errors->first('alamat') }}</span>
                       @endif
@@ -65,7 +62,7 @@
                   <label class="col-sm-2 col-form-label">{{ __('Website') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('website') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('website') ? ' is-invalid' : '' }}" name="website" id="input-website" type="text" placeholder="{{ __('Website') }}"/>
+                      <input class="form-control{{ $errors->has('website Resmi') ? ' is-invalid' : '' }}" name="website" id="input-website" type="text" placeholder="{{ __('Website') }}"/>
                       @if ($errors->has('website'))
                         <span id="website-error" class="error text-danger" for="input-website">{{ $errors->first('website') }}</span>
                       @endif

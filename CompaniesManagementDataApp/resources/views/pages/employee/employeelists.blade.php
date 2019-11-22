@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'employee', 'titlePage' => __('Employee Table List')])
+@extends('layouts.app', ['activePage' => 'Employee Data Table', 'titlePage' => __('Employee Table List')])
 
 @section('content')
 <div class="content">
@@ -69,18 +69,20 @@
                     {{$employee->job->nama_pekerjaan}}
                     </td>
                     <td class="td-actions text-right">
-                      <form action="{{ route('employee.destroy', $employee) }}" method="post">
-                        @csrf
-                        @method('delete')
-                        <button type="button" class="btn btn-danger btn-link" data-original-title="" title="" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
-                          <i class="material-icons">close</i>
+                      <div class="row">
+                        <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('employee.edit', $employee) }}" data-original-title="" title="">
+                          <i class="material-icons">edit</i>
                           <div class="ripple-container"></div>
-                        </button>
-                      </form>
-                      <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('employee.edit', ['id' => $employee->id]) }}" data-original-title="" title="">
-                        <i class="material-icons">edit</i>
-                        <div class="ripple-container"></div>
-                      </a>
+                        </a>
+                        <form action="{{ route('employee.destroy', $employee) }}" method="post">
+                          @csrf
+                          @method('delete')
+                          <button type="button" class="btn btn-danger btn-link" data-original-title="" title="" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
+                            <i class="material-icons">close</i>
+                            <div class="ripple-container"></div>
+                          </button>
+                        </form>
+                      </div>
                     </td>
                   </tr>
                 @endforeach

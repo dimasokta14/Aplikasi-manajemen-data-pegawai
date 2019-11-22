@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <form runat="server" method="post" action="{{ route('company.update') }}" autocomplete="off" class="form-horizontal">
+          <form runat="server" method="post" action="{{ route('company.update', $company) }}" autocomplete="off" class="form-horizontal" enctype="multipart/form-data">
             @csrf
             @method('put')
 
@@ -31,7 +31,6 @@
                   <label class="col-sm-2 col-form-label">{{ __('Nama') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('nama') ? ' has-danger' : '' }}">
-                      <input class="d-none" name="id" value="">
                       <input class="form-control{{ $errors->has('nama') ? ' is-invalid' : '' }}" name="nama" id="input-nama" type="text" placeholder="{{ __('Nama') }}" value="{{ old('nama', $company->nama) }}" required="true" aria-required="true"/>
                       @if ($errors->has('nama'))
                         <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('nama') }}</span>
