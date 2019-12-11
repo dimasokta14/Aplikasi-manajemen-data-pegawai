@@ -26,7 +26,7 @@
             </div>
           </div>
           <div class="card-body">
-            <p class="card-description text-center">{{ __('Or Sign in with ') }} <strong>admin@transisi.id</strong> {{ __(' and the password ') }}<strong>transisi</strong> </p>
+            <p class="card-description text-center">{{ __('Or Sign in with ') }} <strong>admin@mail.com</strong> {{ __(' and the password ') }}<strong>admin123admin</strong> </p>
             <div class="bmd-form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
               <div class="input-group">
                 <div class="input-group-prepend">
